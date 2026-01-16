@@ -252,7 +252,9 @@ module JSON
       end
       super(message, line_number, column_number, cause)
       if cause
-        @line_number, @column_number = cause.location
+        loc = cause.location
+        @line_number = loc[0].to_i64
+        @column_number = loc[1].to_i64
       end
     end
   end
